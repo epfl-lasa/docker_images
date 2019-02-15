@@ -1,5 +1,5 @@
 # docker_images
-Docker images used at LASA. Each folder contain a separate docker images. To build the images, ensure that you have docker set up and running (see [Docker documentation](https://docs.docker.com/install/)) and run the build script:
+Docker images used at LASA. Each folder contains a separate docker images. To build the images, ensure that you have docker set up and running (see [Docker documentation](https://docs.docker.com/install/)) and run the build script:
 
 ```
 sh build.sh
