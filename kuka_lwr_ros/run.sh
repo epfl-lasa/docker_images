@@ -1,8 +1,13 @@
 #!/bin/bash
 if [ $# -eq 0 ] ; then
-    echo 'Specifiy the branch of the image to run (e.g. master)'
+    echo 'Specifiy the branch to build the image with among:'
+    echo '- master'
+    echo '- dev_controllers'
     exit 0
 fi
+
+NAME=$(echo "${PWD##*/}" | tr _ -)
+TAG=$(echo "$1" | tr _/ -)
 
 xhost +
 docker run \
@@ -15,4 +20,4 @@ docker run \
     --device /dev/bus/usb:/dev/bus/usb:rwm \
     --env ROS_MASTER_URI=http://192.168.0.1:11311 \
     --env ROS_IP=192.168.0.1 \
-	kuka-lwr-ros-$1:latest
+	$NAME:$TAG
