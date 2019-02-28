@@ -10,3 +10,7 @@ For some images, you might need to specify which branch you want to pull. In thi
 ```
 sh build.sh myBranch
 ```
+
+Image folders also include a `run.sh` script, that creates an interactive shell within the container. It also set up the environment variables and shared volumes necessary to use the image properly. See the `README` sections in the folder of the specific images for additional details.
+
+Most of the image are based on the [ros_setup](./ros_setup) one which creates a functionnal ros environment.
