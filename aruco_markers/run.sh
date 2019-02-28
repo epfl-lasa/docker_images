@@ -1,4 +1,11 @@
 #!/bin/bash
+if [ $# -eq 0 ] ; then
+    echo 'Specifiy the camera id to use as it appears in /dev/video*:'
+    exit 0
+fi
+
+CAMID=$1
+#!/bin/bash
 NAME=$(echo "${PWD##*/}" | tr _ -)
 
 mkdir markers
@@ -17,12 +24,13 @@ docker volume create --driver local \
     config_vol
 
 xhost +
-docker run \
+sudo docker run \
 	--net=host \
 	-it \
 	--env="DISPLAY" \
 	--volume="/tmp/.X11-unix:/tmp/.X11-unix:rw" \
 	--volume="markers_vol:/home/ros/ros_ws/src/aruco_markers/markers/:rw" \
 	--volume="config_vol:/home/ros/ros_ws/src/aruco_markers/config/:rw" \
-    --device /dev/bus/usb:/dev/bus/usb:rwm \
+    --privileged \
+    --device=/dev/video${CAMID}:/dev/video${CAMID} \
 	$NAME:latest
