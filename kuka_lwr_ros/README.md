@@ -1,7 +1,7 @@
-# kuka_lwr_ros
+# KUKA_LWR_ROS
 
-This image is the base one to connect and use the Kuka LWR. It is based on ros indigo and setup a ros user. kuka_lwr_ros package is compiled and set up to directly connect to the robot.
+This image is the base one to connect and use the Kuka LWR and uses the package [kuka_lwr_ros](https://github.com/epfl-lasa/kuka-lwr-ros.git) developped at LASA-EPFL.
 
-The script ```run.sh``` has all the correct arguments to start the docker image with the environment set up for connection.
+It is built upon [ros_setup](../ros_setup) image with the tag `indigo-ros-base` so be sure to have it built on your computer.
 
-On startup, it will create an interactive environment where you can start nodes or launchfiles as if everything was installed on your own computer. 
+You can build and run a specific branch of the [kuka_lwr_ros](https://github.com/epfl-lasa/kuka-lwr-ros.git) package by passing it as argument of both `build.sh` and `run.sh` scripts.
