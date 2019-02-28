@@ -9,7 +9,7 @@ ENV QT_X11_NO_MITSHM 1
 # Now create the ros user itself
 RUN adduser --gecos "ROS User" --disabled-password ros
 RUN usermod -a -G dialout ros
-ADD 99_aptget /etc/sudoers.d/99_aptget
+ADD config/99_aptget /etc/sudoers.d/99_aptget
 RUN chmod 0440 /etc/sudoers.d/99_aptget && chown root:root /etc/sudoers.d/99_aptget
 
 # Choose to run as user
@@ -25,11 +25,11 @@ RUN cd ~/ros_ws/src && /bin/bash -c "source /ros_entrypoint.sh; catkin_init_work
 RUN cd ~/ros_ws && /bin/bash -c "source /ros_entrypoint.sh; catkin_make"
 
 # Change .bashrc
-COPY update_bashrc /sbin/update_bashrc
+COPY config/update_bashrc /sbin/update_bashrc
 RUN sudo chmod +x /sbin/update_bashrc ; sudo chown ros /sbin/update_bashrc ; sync ; /bin/bash -c /sbin/update_bashrc ; sudo rm /sbin/update_bashrc
 
 # Change entrypoint to source ~/.bashrc and start in ~
-COPY entrypoint.sh /ros_entrypoint.sh 
+COPY config/entrypoint.sh /ros_entrypoint.sh 
 RUN sudo chmod +x /ros_entrypoint.sh ; sudo chown ros /ros_entrypoint.sh ; 
 
 # Clean image

@@ -4,6 +4,7 @@ if [ $# -eq 0 ] ; then
     echo '- melodic-ros-base'
     echo '- kinetic-ros-base'
     echo '- indigo-ros-base'
+    echo '- other available on ros docker hub (not tested)'
     exit 0
 fi
 
