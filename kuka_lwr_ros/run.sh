@@ -17,7 +17,6 @@ docker run \
 	-it \
 	--env="DISPLAY" \
 	--volume="/tmp/.X11-unix:/tmp/.X11-unix:rw" \
-    --device /dev/bus/usb:/dev/bus/usb:rwm \
     --env ROS_MASTER_URI=http://192.168.0.1:11311 \
     --env ROS_IP=192.168.0.1 \
 	$NAME:$TAG

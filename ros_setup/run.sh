@@ -27,5 +27,4 @@ docker run \
 	--env="DISPLAY" \
 	--volume="/tmp/.X11-unix:/tmp/.X11-unix:rw" \
 	--volume="ros_ws_vol:/home/ros/ros_ws/:rw" \
-    --device /dev/bus/usb:/dev/bus/usb:rwm \
 	$NAME:$TAG

@@ -27,7 +27,6 @@ docker run \
 	--env="DISPLAY" \
 	--volume="/tmp/.X11-unix:/tmp/.X11-unix:rw" \
 	--volume="data_vol:/home/ros/ros_ws/src/force_based_ds_modulation/data:rw" \
-    --device /dev/bus/usb:/dev/bus/usb:rwm \
     --env ROS_MASTER_URI=http://192.168.0.1:11311 \
     --env ROS_IP=192.168.0.1 \
 	$NAME:$TAG
