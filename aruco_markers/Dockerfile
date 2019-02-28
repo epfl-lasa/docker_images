@@ -16,6 +16,7 @@ RUN sudo apt-get update && sudo apt-get install -y build-essential \
 	libpng-dev \ 
 	libtiff-dev \
 	libdc1394-22-dev \
+	ros-melodic-tf \
 	&& sudo rm -rf /var/lib/apt/lists/*
 
 RUN cd ~/ros_ws/src && git clone https://github.com/epfl-lasa/aruco_markers.git
