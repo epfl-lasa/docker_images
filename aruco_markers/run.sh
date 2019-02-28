@@ -1,6 +1,9 @@
 #!/bin/bash
 NAME=$(echo "${PWD##*/}" | tr _ -)
 
+mkdir markers
+mkdir config
+
 docker volume create --driver local \
     --opt type=none \
     --opt device=$PWD/markers/ \
