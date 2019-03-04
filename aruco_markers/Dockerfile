@@ -26,11 +26,14 @@ RUN cd ~/ros_ws/src/aruco_markers/lib/opencv \
 	&& cd build \
 	&& cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr/local -DOPENCV_EXTRA_MODULES_PATH=../../opencv_contrib/modules ..
 
-ARG NB_PROCESS=8
-RUN cd ~/ros_ws/src/aruco_markers/lib/opencv/build && make -j${NB_PROCESS}
+ARG NB_CORE=8
+RUN cd ~/ros_ws/src/aruco_markers/lib/opencv/build && make -j${NB_CORE}
 RUN cd ~/ros_ws/src/aruco_markers/lib/opencv/build && sudo make install
 
 RUN cd ~/ros_ws && /bin/bash -c "source devel/setup.bash; catkin_make"
+
+# Clean image
+RUN sudo apt-get clean && sudo rm -rf /var/lib/apt/lists/*
 
 ENTRYPOINT ["/ros_entrypoint.sh"]
 CMD ["bash"]

@@ -8,7 +8,7 @@ if [ $# -eq 0 ] ; then
     exit 0
 fi
 
-mkdir ros_ws
+mkdir -p ros_ws
 
 NAME=$(echo "${PWD##*/}" | tr _ -)
 TAG=$(echo "$1" | tr _/ -)
@@ -18,7 +18,7 @@ docker volume create --driver local \
     --opt type=none \
     --opt device=$PWD/ros_ws/ \
     --opt o=bind \
-    ros_ws_vol
+    ros_setup_ros_ws_vol
 
 xhost +
 docker run \
@@ -26,5 +26,5 @@ docker run \
 	-it \
 	--env="DISPLAY" \
 	--volume="/tmp/.X11-unix:/tmp/.X11-unix:rw" \
-	--volume="ros_ws_vol:/home/ros/ros_ws/:rw" \
+	--volume="ros_setup_ros_ws_vol:/home/ros/ros_ws/:rw" \
 	$NAME:$TAG
