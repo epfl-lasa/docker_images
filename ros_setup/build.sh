@@ -10,4 +10,10 @@ fi
 
 NAME=$(echo "${PWD##*/}" | tr _ -)
 TAG=$(echo "$1" | tr _/ -)
-docker build --build-arg ROS_DISTRO=$1 -t $NAME:$TAG .
+
+UID="$(id -u $USER)"
+GID="$(id -g $USER)"
+docker build --build-arg ROS_DISTRO=$1 \
+ 	--build-arg UID=$UID \
+ 	--build-arg GID=$GID \
+ 	-t $NAME:$TAG .

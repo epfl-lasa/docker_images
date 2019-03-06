@@ -6,8 +6,11 @@ RUN apt-get update && apt-get install -y wget git vim bash-completion build-esse
 
 ENV QT_X11_NO_MITSHM 1
 
-# Now create the ros user itself
-RUN adduser --gecos "ROS User" --disabled-password ros
+# Now create the same user as the host itself
+ARG UID=1000
+ARG GID=1000
+RUN addgroup --gid ${GID} ros
+RUN adduser --gecos "ROS User" --disabled-password --uid ${UID} --gid ${GID} ros
 RUN usermod -a -G dialout ros
 ADD config/99_aptget /etc/sudoers.d/99_aptget
 RUN chmod 0440 /etc/sudoers.d/99_aptget && chown root:root /etc/sudoers.d/99_aptget
@@ -21,6 +24,7 @@ ENV HOME /home/ros
 
 # workspace setup
 RUN mkdir -p ~/ros_ws/src
+
 RUN cd ~/ros_ws/src && /bin/bash -c "source /ros_entrypoint.sh; catkin_init_workspace"
 RUN cd ~/ros_ws && /bin/bash -c "source /ros_entrypoint.sh; catkin_make"
 
