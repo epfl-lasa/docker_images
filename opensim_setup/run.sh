@@ -8,7 +8,7 @@ docker volume create --driver local \
     --opt type=none \
     --opt device=$PWD/ros_ws/ \
     --opt o=bind \
-    opensim_setup_ros_ws_vol
+    ${NAME}_ros_ws_vol
 
 xhost +
 docker run \
@@ -19,5 +19,5 @@ docker run \
     --volume="/tmp/.X11-unix:/tmp/.X11-unix:rw" \
     -env="XAUTHORITY=$XAUTH" \
     --volume="$XAUTH:$XAUTH" \
-    --volume="opensim_ros_ws_vol:/home/ros/ros_ws/:rw" \
+    --volume="${NAME}_ros_ws_vol:/home/ros/ros_ws/:rw" \
     $NAME:latest
