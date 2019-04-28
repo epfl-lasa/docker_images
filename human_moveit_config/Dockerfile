@@ -11,8 +11,10 @@ RUN sudo apt-get update && sudo apt-get -y install ros-kinetic-moveit \
     ros-kinetic-eigen-conversions \
     && sudo rm -rf /var/lib/apt/lists/*
 
-ARG DUMMY=unknown
+ARG DUMMY=unknown3
 RUN DUMMY=${DUMMY} cd ~/ros_ws/src && git clone https://github.com/baxter-flowers/human_moveit_config.git
+RUN cd ~/ros_ws/src && git clone https://github.com/buschbapti/handovers.git
+
 RUN cd ~/ros_ws && /bin/bash -c "source ~/ros_ws/devel/setup.bash; catkin_make"
 
 # Clean image
