@@ -1,14 +1,14 @@
-FROM ros-setup:melodic-ros-base
+FROM ros-setup:kinetic-ros-base
 ENV DEBIAN_FRONTEND noninteractive
 
 USER ros
 
 ENV QT_X11_NO_MITSHM 1
 
-RUN sudo apt-get update && sudo apt-get -y install ros-melodic-moveit \
-    ros-melodic-trac-ik \
-    ros-melodic-urdfdom-py \
-    ros-melodic-eigen-conversions \
+RUN sudo apt-get update && sudo apt-get -y install ros-kinetic-moveit \
+    ros-kinetic-trac-ik \
+    ros-kinetic-urdfdom-py \
+    ros-kinetic-eigen-conversions \
     && sudo rm -rf /var/lib/apt/lists/*
 
 ARG DUMMY=unknown
