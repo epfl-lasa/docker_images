@@ -2,7 +2,6 @@
 NAME=$(echo "${PWD##*/}" | tr _ -)
 
 mkdir -p ros_ws
-mkdir -p opensim_tests
 
 # create a shared volume to store the ros_ws
 docker volume create --driver local \
