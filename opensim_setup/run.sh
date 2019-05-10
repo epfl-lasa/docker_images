@@ -2,6 +2,7 @@
 NAME=$(echo "${PWD##*/}" | tr _ -)
 
 mkdir -p ros_ws
+mkdir -p opensim_tests
 
 # create a shared volume to store the ros_ws
 docker volume create --driver local \
@@ -19,5 +20,5 @@ docker run \
     --volume="/tmp/.X11-unix:/tmp/.X11-unix:rw" \
     -env="XAUTHORITY=$XAUTH" \
     --volume="$XAUTH:$XAUTH" \
-    --volume="opensim_ros_ws_vol:/home/ros/ros_ws/:rw" \
+    --volume="opensim_setup_ros_ws_vol:/home/ros/ros_ws/:rw" \
     $NAME:latest
