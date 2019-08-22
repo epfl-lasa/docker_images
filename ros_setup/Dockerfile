@@ -1,6 +1,8 @@
-ARG ROS_DISTRO=melodic-ros-base
-FROM ros:${ROS_DISTRO}
-ENV DEBIAN_FRONTEND noninteractive
+ARG BASE_IMAGE=osrf/ros
+ARG BASE_TAG=melodic-desktop-full
+
+FROM ${BASE_IMAGE}:${BASE_TAG}
+ENV DEBIAN_FRONTEND=noninteractive
 
 RUN apt-get update && apt-get install -y wget git vim bash-completion build-essential sudo && rm -rf /var/lib/apt/lists/*
 
