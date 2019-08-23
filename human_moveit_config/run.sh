@@ -18,5 +18,5 @@ docker run \
     --volume="/tmp/.X11-unix:/tmp/.X11-unix:rw" \
     -env="XAUTHORITY=$XAUTH" \
     --volume="$XAUTH:$XAUTH" \
-    --volume="${NAME}_ros_ws_vol:/home/ros/ros_ws/:rw" \
+    --volume="${NAME}_ros_ws_vol:/home/ros/ros_ws/src/:rw" \
     $NAME:latest
