@@ -1,5 +1,5 @@
 BASE_IMAGE=osrf/ros
-BASE_TAG=indigo-desktop-full
+BASE_TAG=kinetic-desktop-full
 
 docker pull ${BASE_IMAGE}:${BASE_TAG}
 
