@@ -12,7 +12,6 @@ docker volume create --driver local \
 
 xhost +
 docker run \
-    --runtime=nvidia \
     --net=host \
     -it \
     --env DISPLAY=${DISPLAY} \

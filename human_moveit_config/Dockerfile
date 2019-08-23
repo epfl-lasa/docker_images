@@ -27,11 +27,5 @@ RUN pip install scipy==1.2.0
 # Clean image
 RUN sudo apt-get clean && sudo rm -rf /var/lib/apt/lists/*
 
-# nvidia-container-runtime
-ENV NVIDIA_VISIBLE_DEVICES \
-    ${NVIDIA_VISIBLE_DEVICES:-all}
-ENV NVIDIA_DRIVER_CAPABILITIES \
-    ${NVIDIA_DRIVER_CAPABILITIES:+$NVIDIA_DRIVER_CAPABILITIES,}graphics
-
 ENTRYPOINT ["/ros_entrypoint.sh"]
 CMD ["bash"]
