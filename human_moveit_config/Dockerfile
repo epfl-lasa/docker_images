@@ -24,7 +24,7 @@ RUN DUMMY=${DUMMY} cd ~/ros_ws/src && git clone https://github.com/ros/xacro.git
 RUN cd ~/ros_ws && /bin/bash -c "source ~/ros_ws/devel/setup.bash; catkin_make"
 
 RUN pip install xmltodict
-RUN pip install scipy
+RUN pip install scipy==1.2.0
 
 # Clean image
 RUN sudo apt-get clean && sudo rm -rf /var/lib/apt/lists/*
