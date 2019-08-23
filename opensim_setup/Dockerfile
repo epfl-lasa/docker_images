@@ -37,12 +37,37 @@ RUN cd ~ && mkdir opensim_build && cd opensim_build \
 	&& make -j${NB_CORE} \
 	&& make -j${NB_CORE} install
 
-# Clean image
-RUN sudo apt-get clean && sudo rm -rf /var/lib/apt/lists/*
+RUN cd ~ && git clone https://github.com/RealTimeBiomechanics/Filter.git \
+  && cd Filter \
+  && mkdir build \
+  && cd build \
+  && cmake .. \
+  && make -j${NB_CORE} \
+  && sudo make -j${NB_CORE} install
+
+RUN cd ~ && git clone https://github.com/SoryaJullien/Concurrency.git \
+  && cd Concurrency \
+  && mkdir build \
+  && cd build \
+  && cmake .. \
+  && make -j${NB_CORE} \
+  && sudo make -j${NB_CORE} install
 
 ENV PATH=~/opensim_install/bin:$PATH
 ENV LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/home/ros/opensim_install/lib
 ENV OPENSIM_HOME=/home/ros/opensim_install
+
+RUN cd ~ && git clone https://github.com/SoryaJullien/rtosim.git \
+  && cd rtosim \
+  && mkdir build \
+  && cd build \
+  && cmake .. \
+  && make -j${NB_CORE} \
+  && sudo make -j${NB_CORE} install
+
+
+# Clean image
+RUN sudo apt-get clean && sudo rm -rf /var/lib/apt/lists/*
 
 # RUN sudo apt-get update && sudo DEBIAN_FRONTEND=noninteractive apt-get install -yq xserver-xorg-video-all && sudo rm -rf /var/lib/apt/lists/*
 

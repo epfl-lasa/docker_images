@@ -1,4 +1,3 @@
-#!/bin/bash
 REBUILD=0
 
 while getopts 'r' opt; do
@@ -11,12 +10,17 @@ done
 shift "$(( OPTIND - 1 ))"
 
 NAME=$(echo "${PWD##*/}" | tr _ -)
+TAG=$(echo "$1" | tr _/ -)
+
+if [ -z "$TAG" ]; then
+	TAG="latest"
+fi
 
 if [ "$REBUILD" -eq 1 ]; then
 	docker build \
     	--no-cache \
- 		-t ${NAME}:latest .
+ 		-t $NAME:$TAG .
  else
 	docker build \
- 		-t ${NAME}:latest .
+ 		-t $NAME:$TAG .
  fi
