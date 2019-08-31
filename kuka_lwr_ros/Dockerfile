@@ -1,17 +1,19 @@
-FROM ros-setup:kinetic-desktop-full
+ARG DISTRIB=indigo
+FROM ros-setup:${DISTRIB}-desktop-full
 ENV DEBIAN_FRONTEND noninteractive
 
 RUN sudo sh -c 'echo "deb http://packages.osrfoundation.org/gazebo/ubuntu `lsb_release -cs` main" > /etc/apt/sources.list.d/gazebo-latest.list'
 RUN wget http://packages.osrfoundation.org/gazebo.key -O - | sudo apt-key add -
 
-RUN sudo apt-get update && sudo apt-get install -y ros-kinetic-orocos-kdl \
-    ros-kinetic-kdl-parser \ 
-    ros-kinetic-ros-control \
-    ros-kinetic-ros-controllers \
-    ros-kinetic-gazebo-ros \
-    ros-kinetic-gazebo-ros-pkgs \
-    ros-kinetic-eigen-conversions \
-    ros-kinetic-tf-conversions \
+ARG DISTRIB=indigo
+RUN sudo apt-get update && sudo apt-get install -y ros-${DISTRIB}-orocos-kdl \
+    ros-${DISTRIB}-kdl-parser \ 
+    ros-${DISTRIB}-ros-control \
+    ros-${DISTRIB}-ros-controllers \
+    ros-${DISTRIB}-gazebo-ros \
+    ros-${DISTRIB}-gazebo-ros-pkgs \
+    ros-${DISTRIB}-eigen-conversions \
+    ros-${DISTRIB}-tf-conversions \
     libeigen3-dev \
 	libncurses5-dev \
 	libarmadillo-dev \    
@@ -27,7 +29,7 @@ RUN cd ~/ros_ws/src && wstool init
 RUN cd ~/ros_ws/src && wstool merge kuka-lwr-ros/dependencies.rosinstall
 RUN cd ~/ros_ws/src && wstool update
 
-RUN sudo apt-get update && rosdep update && rosdep install --from-paths -y ~/ros_ws/src --ignore-src --rosdistro kinetic && sudo rm -rf /var/lib/apt/lists/*
+RUN sudo apt-get update && rosdep update --include-eol- && rosdep install --from-paths -y ~/ros_ws/src --ignore-src --rosdistro ${DISTRIB} && sudo rm -rf /var/lib/apt/lists/*
 
 RUN cd ~/ros_ws && /bin/bash -c "source devel/setup.bash; catkin_make"
 
