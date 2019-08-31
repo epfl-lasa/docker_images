@@ -1,6 +1,6 @@
 #!/bin/bash
 NAME=$(echo "${PWD##*/}" | tr _ -)
-TAG=master-ros-kinetic-walid
+TAG=dev-controllers
 
 xhost +
 docker run \
