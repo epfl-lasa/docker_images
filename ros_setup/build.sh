@@ -1,10 +1,3 @@
-BASE_IMAGE=osrf/ros
-BASE_TAG=kinetic-desktop-full
-
-docker pull ${BASE_IMAGE}:${BASE_TAG}
-
-cp ../ssh_keys/ssh_key config/
-
 REBUILD=0
 
 while getopts 'r' opt; do
@@ -15,6 +8,19 @@ while getopts 'r' opt; do
     esac
 done
 shift "$(( OPTIND - 1 ))"
+
+if [ $# -eq 0 ] ; then
+    echo 'Specifiy the ros distrib to use:'
+    echo '- indigo'
+    echo '- kinetic'
+    echo '- melodic'
+    exit 0
+fi
+
+BASE_IMAGE=osrf/ros
+DISTRIB=$1
+
+docker pull ${BASE_IMAGE}:${DISTRIB}-desktop-full
 
 NAME=$(echo "${PWD##*/}" | tr _ -)
 
