@@ -1,13 +1,19 @@
-FROM ros-setup:kinetic-desktop-full
+ARG DISTRIB=kinetic
+FROM ros-setup:${DISTRIB}-desktop-full
 ENV DEBIAN_FRONTEND noninteractive
 
 USER ros
 
 ENV QT_X11_NO_MITSHM 1
 
+RUN sudo apt-get update && sudo apt-get install -y \
+	libarmadillo-dev \    
+    && sudo rm -rf /var/lib/apt/lists/*
+
 RUN cd ~/ros_ws/src && git clone https://github.com/alaurens/body_tracker_msgs.git
 RUN cd ~/ros_ws/src && git clone https://github.com/buschbapti/human_tf_pub.git
 RUN cd ~/ros_ws/src && git clone https://github.com/epfl-lasa/mocap_optitrack.git
+RUN cd ~/ros_ws/src && git clone https://github.com/nbfigueroa/SVMGrad.git
 
 RUN cd ~/ros_ws && /bin/bash -c "source ~/ros_ws/devel/setup.bash; catkin_make"
 
