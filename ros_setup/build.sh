@@ -19,8 +19,9 @@ fi
 
 BASE_IMAGE=osrf/ros
 DISTRIB=$1
+BASE_TAG=${DISTRIB}-desktop-full
 
-docker pull ${BASE_IMAGE}:${DISTRIB}-desktop-full
+docker pull ${BASE_IMAGE}:${BASE_TAG}
 
 NAME=$(echo "${PWD##*/}" | tr _ -)
 

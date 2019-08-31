@@ -1,17 +1,16 @@
 #!/bin/bash
 if [ $# -eq 0 ] ; then
-    echo 'Specifiy the ros distro to build the image on among:'
-    echo '- melodic-ros-base'
-    echo '- kinetic-ros-base'
-    echo '- indigo-ros-base'
-    echo '- other available on ros docker hub (not tested)'
+    echo 'Specifiy the ros distrib to use:'
+    echo '- indigo'
+    echo '- kinetic'
+    echo '- melodic'
     exit 0
 fi
 
 mkdir -p ros_ws
 
 NAME=$(echo "${PWD##*/}" | tr _ -)
-TAG=$(echo "$1" | tr _/ -)
+TAG=$1-desktop-full
 
 # create a shared volume to store the ros_ws
 docker volume create --driver local \
