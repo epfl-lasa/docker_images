@@ -1,4 +1,4 @@
-ARG DISTRIB=kinetic
+ARG DISTRIB=melodic
 FROM ros-setup:${DISTRIB}-desktop-full
 ENV DEBIAN_FRONTEND noninteractive
 
@@ -14,6 +14,16 @@ RUN cd ~/ros_ws/src && git clone https://github.com/alaurens/body_tracker_msgs.g
 RUN cd ~/ros_ws/src && git clone https://github.com/buschbapti/human_tf_pub.git
 RUN cd ~/ros_ws/src && git clone https://github.com/epfl-lasa/mocap_optitrack.git
 RUN cd ~/ros_ws/src && git clone https://github.com/nbfigueroa/SVMGrad.git
+
+COPY ./lib/ /home/${USER}/lib/
+RUN sudo chown -R ${USER}:${USER} /home/${USER}/lib
+
+RUN cd ~/lib/protocol_buffers && rm -rf build && mkdir build && cd build && cmake .. && make && sudo make install && sudo ldconfig
+RUN cd ~/lib/state_representation && rm -rf build && mkdir build && cd build && cmake .. && make && sudo make install && sudo ldconfig
+RUN cd ~/lib/dynamical_systems && rm -rf build && mkdir build && cd build && cmake .. && make && sudo make install && sudo ldconfig
+
+COPY ./src/ergo_ds/ /home/${USER}/ros_ws/src/ergo_ds/
+RUN sudo chown -R ${USER}:${USER} /home/${USER}/ros_ws/src/ergo_ds
 
 RUN cd ~/ros_ws && /bin/bash -c "source ~/ros_ws/devel/setup.bash; catkin_make"
 
