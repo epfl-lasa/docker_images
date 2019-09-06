@@ -8,7 +8,7 @@ docker volume create --driver local \
     --opt type=none \
     --opt device=$PWD/ros2_ws/ \
     --opt o=bind \
-    ros2_setup_ros2_ws_vol
+    ${NAME}_ros2_ws_vol
 
 xhost +
 docker run \
@@ -19,5 +19,7 @@ docker run \
 	--volume="/tmp/.X11-unix:/tmp/.X11-unix:rw" \
 	--env="XAUTHORITY=$XAUTH" \
     --volume="$XAUTH:$XAUTH" \
-	--volume="ros2_setup_ros2_ws_vol:/home/ros2/ros2_ws/:rw" \
+	--volume="${NAME}_ros2_ws_vol:/home/ros2/ros2_ws/:rw" \
+	--device=/dev/dri:/dev/dri \
+	-v /dev/video \
 	$NAME:latest
