@@ -1,18 +1,12 @@
-FROM osrf/ros:dashing-desktop
+FROM osrf/ros:eloquent-desktop
 ENV DEBIAN_FRONTEND=noninteractive
 
-# setup timezone
-#RUN echo 'Etc/UTC' > /etc/timezone && \
-#    ln -s /usr/share/zoneinfo/Etc/UTC /etc/localtime && \
-#    apt-get update && apt-get install -q -y tzdata && rm -rf /var/lib/apt/lists/*
-
-#RUN apt update && apt install -y curl gnupg2 lsb-release
-#RUN curl http://repo.ros2.org/repos.key | apt-key add -
-#RUN sh -c 'echo "deb [arch=amd64,arm64] http://packages.ros.org/ros2/ubuntu `lsb_release -cs` main" > /etc/apt/sources.list.d/ros2-#latest.list'
+RUN echo "Set disable_coredump false" >> /etc/sudo.conf
 
 RUN apt update && apt install -y \
   sudo \
   git \
+  software-properties-common \
   && rm -rf /var/lib/apt/lists/*
 
 ENV QT_X11_NO_MITSHM 1
