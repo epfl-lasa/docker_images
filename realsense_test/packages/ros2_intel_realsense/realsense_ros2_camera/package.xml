@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<?xml-model href="http://download.ros.org/schema/package_format2.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
+<package format="2">
+  <name>realsense_ros2_camera</name>
+  <version>2.0.4</version>
+  <description>The realsense_ros2_camera package</description>
+  <maintainer email="sharron.liu@intel.com">Sharron LIU</maintainer>
+  <maintainer email="chris.ye@intel.com">Chris Ye</maintainer>
+  <license>Apache License 2.0</license>
+
+  <buildtool_depend>ament_cmake</buildtool_depend>
+
+  <build_depend>eigen</build_depend>
+
+  <depend>builtin_interfaces</depend>
+  <depend>cv_bridge</depend>
+  <depend>image_transport</depend>
+  <depend>librealsense2</depend>
+  <depend>rclcpp</depend>
+  <depend>realsense_camera_msgs</depend>
+  <depend>sensor_msgs</depend>
+  <depend>std_msgs</depend>
+  <depend>tf2</depend>
+  <depend>tf2_ros</depend>
+
+  <test_depend>ament_cmake_gtest</test_depend>
+  <test_depend>ament_lint_auto</test_depend>
+  <test_depend>ament_lint_common</test_depend>
+  <test_depend>libopencv-dev</test_depend>
+
+  <export>
+    <build_type>ament_cmake</build_type>
+  </export>
+</package>
