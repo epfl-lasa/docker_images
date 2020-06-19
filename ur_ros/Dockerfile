@@ -13,21 +13,28 @@ RUN sudo apt-get update && sudo apt-get install -y ros-${DISTRIB}-orocos-kdl \
     ros-${DISTRIB}-gazebo-ros \
     ros-${DISTRIB}-gazebo-ros-pkgs \
     ros-${DISTRIB}-eigen-conversions \
-    ros-${DISTRIB}-tf-conversions \
+	ros-${DISTRIB}-tf-conversions \
+	ros-${DISTRIB}-ridgeback-* \
+	ros-${DISTRIB}-universal-robot \
     libeigen3-dev \
 	libncurses5-dev \
 	libarmadillo-dev \    
-    && sudo rm -rf /var/lib/apt/lists/*
+	&& sudo rm -rf /var/lib/apt/lists/*
 
 ENV QT_X11_NO_MITSHM 1
 USER ros
 
-ARG BRANCH=master
-RUN cd ~/ros_ws/src && git clone -b ${BRANCH} --single-branch https://github.com/epfl-lasa/kuka-lwr-ros.git
+ARG BRANCH=devel
+RUN cd ~/ros_ws/src && git clone -b ${BRANCH} --single-branch https://github.com/epfl-lasa/ridgeback_ur5_controller.git
 
 RUN cd ~/ros_ws/src && wstool init
-RUN cd ~/ros_ws/src && wstool merge kuka-lwr-ros/dependencies.rosinstall
+RUN cd ~/ros_ws/src && wstool merge ridgeback_ur5_controller/dependencies.rosinstall
 RUN cd ~/ros_ws/src && wstool update
+
+# Copy local workspace
+ENV HOME /home/${USER}
+WORKDIR ${HOME}/ros_ws/
+COPY --chown=${USER} ./source/packages/ ./src/ 
 
 RUN sudo apt-get update && rosdep update --include-eol- && rosdep install --from-paths -y ~/ros_ws/src --ignore-src --rosdistro ${DISTRIB} && sudo rm -rf /var/lib/apt/lists/*
 
