@@ -1,6 +1,0 @@
-[submodule "kuka_fri"]
-	path = kuka_fri
-	url = git@github.com:epfl-lasa/kuka_fri.git
-[submodule "iiwa_ros"]
-	path = iiwa_ros
-	url = https://github.com/epfl-lasa/iiwa_ros.git
