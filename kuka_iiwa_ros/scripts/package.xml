@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<?xml-model href="http://download.ros.org/schema/package_format2.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
+<package format="3">
+  <name>kuka_iiwa_simulator</name>
+  <version>0.0.0</version>
+  <description>TODO: Package description</description>
+  <maintainer email="buschbapti@aica.tech">buschbapti</maintainer>
+  <license>TODO: License declaration</license>
+
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <build_depend>roscpp</build_depend>
+  <build_depend>tf</build_depend>
+
+  <exec_depend>roscpp</exec_depend>
+  <exec_depend>tf</exec_depend>
+
+</package>

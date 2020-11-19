@@ -1,0 +1,26 @@
+topics:
+    - {topic: "/tf", type: "tf2_msgs/msg/TFMessage"}
+    - {topic: "/tf_static", type: "tf2_msgs/msg/TFMessage"}
+    - {topic: "/main_node/guard_twist", type: "geometry_msgs/msg/Twist"}
+    - {topic: "/iiwa1/CustomControllers/command", type: "std_msgs/msg/Float64MultiArray"}
+    - {topic: "/iiwa2/CustomControllers/command", type: "std_msgs/msg/Float64MultiArray"}
+    - {topic: "/pose_attractor_left", type: "geometry_msgs/msg/PoseStamped"}
+    - {topic: "/pose_attractor_right", type: "geometry_msgs/msg/PoseStamped"}
+    - {topic: "/pose_robot_left", type: "geometry_msgs/msg/PoseStamped"}
+    - {topic: "/pose_robot_right", type: "geometry_msgs/msg/PoseStamped"}
+    - {topic: "/pose_approach_left", type: "geometry_msgs/msg/PoseStamped"}
+    - {topic: "/pose_approach_right", type: "geometry_msgs/msg/PoseStamped"}
+    - {topic: "/pose_contact_left", type: "geometry_msgs/msg/PoseStamped"}
+    - {topic: "/pose_contact_right", type: "geometry_msgs/msg/PoseStamped"}
+    - {topic: "/clamped_desired_twist_left", type: "geometry_msgs/msg/TwistStamped"}
+    - {topic: "/clamped_desired_twist_right", type: "geometry_msgs/msg/TwistStamped"}
+    - {topic: "/desired_twist_left", type: "geometry_msgs/msg/TwistStamped"}
+    - {topic: "/desired_twist_right", type: "geometry_msgs/msg/TwistStamped"}
+    - {topic: "/desired_twist_object", type: "geometry_msgs/msg/TwistStamped"}
+    - {topic: "/desired_pose_object", type: "geometry_msgs/msg/PoseStamped"}
+    - {topic: "/position_left", type: "geometry_msgs/msg/TwistStamped"}
+    - {topic: "/position_right", type: "geometry_msgs/msg/TwistStamped"}
+    - {topic: "/orientation_left", type: "geometry_msgs/msg/TwistStamped"}
+    - {topic: "/orientation_right", type: "geometry_msgs/msg/TwistStamped"}
+    - {topic: "/twist_conveyor", type: "geometry_msgs/msg/TwistStamped"}
+    
