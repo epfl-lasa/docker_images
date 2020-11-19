@@ -14,8 +14,14 @@ Then you can build the image as usual using:
 sh build.sh
 ```
 
-And running it with:
+To run the simulation, thus gazebo, in the container requires a Nvidia graphic card on the computer with Nvidia graphic drivers installed and [Nvidia Container Toolkit](https://github.com/NVIDIA/nvidia-docker). The configuration is done in the `run.sh` script. Start it with:
 
 ```bash
 sh run.sh
+```
+
+Once in the terminal you can try the installation with:
+
+```bash
+roslaunch iiwa_gazebo iiwa_gazebo.launch
 ```
