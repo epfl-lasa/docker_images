@@ -1,29 +1,21 @@
-# README #
+# kuka_iiwa_ros
 
-This README would normally document whatever steps are necessary to get your application up and running.
+This image creates a ros workspace set up to control a KUKA IIWA robot. See [iiwa_ros](https://github.com/epfl-lasa/iiwa_ros) package for more details. The installation process relies on the [kuka_fri](https://github.com/epfl-lasa/kuka_fri) package that is private. It is included as a submodule that requires [ssh configured properly](https://docs.github.com/en/free-pro-team@latest/github/authenticating-to-github/connecting-to-github-with-ssh).
 
-### What is this repository for? ###
+To download the submodule simply run:
 
-* Quick summary
-* Version
-* [Learn Markdown](https://bitbucket.org/tutorials/markdowndemo)
+```bash
+git submodule init && git submodule update
+```
 
-### How do I get set up? ###
+Then you can build the image as usual using:
 
-* Summary of set up
-* Configuration
-* Dependencies
-* Database configuration
-* How to run tests
-* Deployment instructions
+```bash
+sh build.sh
+```
 
-### Contribution guidelines ###
+And running it with:
 
-* Writing tests
-* Code review
-* Other guidelines
-
-### Who do I talk to? ###
-
-* Repo owner or admin
-* Other community or team contact
+```bash
+sh run.sh
+```

@@ -150,13 +150,9 @@ SHELL ["/bin/bash", "--login", "-i", "-c"]
 RUN catkin_init_workspace
 SHELL ["/bin/bash", "--login", "-c"]
 
-COPY --chown=${USER} ./iiwa_ros ${HOME}/ros_overlay_ws/src/iiwa_ros
-
 WORKDIR /home/${USER}/ros_overlay_ws/src
+RUN git clone https://github.com/epfl-lasa/iiwa_ros.git
 RUN git clone -b melodic-devel --single-branch https://github.com/ros-controls/ros_control.git
-
-COPY --chown=${USER} ./scripts/ ${HOME}/ros_overlay_ws/src/scripts
-COPY --chown=${USER} ./models/ ${HOME}/ros_overlay_ws/src/models
 
 WORKDIR /home/${USER}/ros_overlay_ws/src
 RUN rosdep update
