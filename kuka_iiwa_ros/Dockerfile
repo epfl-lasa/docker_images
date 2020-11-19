@@ -76,7 +76,7 @@ RUN sudo chmod +x /ros_entrypoint.sh ; sudo chown ros /ros_entrypoint.sh ;
 RUN mkdir -p ${HOME}/lib
 WORKDIR ${HOME}/lib
 # copy kuka_fri
-COPY --chown=${USER} ./kuka_fri ${HOME}/lib/kuka_fri
+COPY --chown=${USER} ./dependencies/kuka_fri ${HOME}/lib/kuka_fri
 WORKDIR ${HOME}/lib/kuka_fri
 RUN ./waf configure
 RUN ./waf
